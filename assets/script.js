@@ -1,49 +1,47 @@
 ((document) => {
-  const $ = x => [...document.querySelectorAll(x)];
+  const $ = x => document.querySelector(x);
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  let frame = $('.wrapper').pop(), picIndex = 1, songIndex = 1;
+  const frame = $('.wrapper'), content = $('.content');
+  let picIndex = 0, songIndex = 0;
 
-  const renderPic = filename => {
-    const url = `url('pics/${filename}')`;
-    console.debug(url);
-    frame.style.backgroundImage = url;
-    document.title = filename;
+  const renderPics = pics => {
+    frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`
+    document.title = pics[picIndex];
+
+    setInterval(() => {
+      picIndex = picIndex+1 > pics.length-1 ? 0 : picIndex+1;
+      frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
+      document.title = pics[picIndex];
+    }, 3000);
   };
 
   const renderAudioPlayer = songs => {
-    const player = new Audio(`songs/${songs[0]}`);
+    const player = new Audio(`songs/${songs[songIndex]}`);
+    player.controls = true;
 
     player.addEventListener('ended',function(){
-      if (songIndex === songIndex.length - 1) {
-        songIndex = 0;
-      }
+      songIndex = songIndex+1 > songs.length-1 ? 0 : songIndex+1;
       player.src = `songs/${songs[songIndex]}`
       player.pause();
       player.load();
       player.play();
 
-      songIndex += 1;
+      console.debug(songs[songIndex], songs, songIndex);
     });
 
-    player.controls = true;
+    player.addEventListener('error', e => {
+      console.debug(e);
+      console.debug(songs);
+      console.debug(songIndex);
+    });
 
-    frame.append(player);
+    content.append(player);
   }
 
   const run = (pics, songs) => {
-    renderPic(pics[0]);
+    renderPics(pics);
     renderAudioPlayer(songs);
-
-    setInterval(() => {
-      if (picIndex === pics.length - 1) {
-        picIndex = 0;
-      }
-
-      renderPic(pics[picIndex]);
-
-      picIndex += 1;
-    }, 3000);
   }
 
   fetch('data.json')
