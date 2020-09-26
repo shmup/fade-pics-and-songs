@@ -1,0 +1,11 @@
+A slideshow of pictures w/ audio
+
+`make` will:
+  - generate a `dist/data.json` of all `pics/*` and `songs/*`
+  - copy over play.html -> dist/index.html
+  - copy all other assets (css, json, favicon) to dist/
+
+Stand it up however you want, I like something like:
+  - python -m SimpleHTTPServer
+  - or https://github.com/svrxjs/svrx
+
