@@ -4,6 +4,19 @@ html, body {
   padding: 0;
 }
 
+.header {
+  background: white;
+}
+
+.header label {
+  display: flex;
+}
+
+.panel {
+  background: white;
+  padding: 5px;
+}
+
 .wrapper {
   transition: background 1s linear;
   height: 100%;

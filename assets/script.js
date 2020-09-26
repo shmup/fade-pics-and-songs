@@ -1,19 +1,27 @@
 ((document) => {
   const $ = x => document.querySelector(x);
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  const frame = $('.wrapper'), content = $('.content');
-  let picIndex = 0, songIndex = 0;
+  const frame = $('.wrapper'), header = $('.header');
 
-  const renderPics = pics => {
-    frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`
-    document.title = pics[picIndex];
+  let picIndex = 0, songIndex = 0, cyclePicsId = null;
 
-    setInterval(() => {
+  const cyclePics = (pics, picIndex, speed) => {
+    return setInterval(() => {
       picIndex = picIndex+1 > pics.length-1 ? 0 : picIndex+1;
       frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
       document.title = pics[picIndex];
-    }, 3000);
+    }, speed * 1000);
+  }
+
+  const renderPics = (pics, speed) => {
+    frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`
+    document.title = pics[picIndex];
+
+    if (cyclePicsId) {
+      clearTimeout(cyclePicsId);
+    }
+
+    cyclePicsId = cyclePics(pics, picIndex, speed);
   };
 
   const renderAudioPlayer = songs => {
@@ -36,11 +44,11 @@
       console.debug(songIndex);
     });
 
-    content.append(player);
+    header.append(player);
   }
 
   const run = (pics, songs) => {
-    renderPics(pics);
+    renderPics(pics, 15);
     renderAudioPlayer(songs);
   }
 
@@ -51,6 +59,12 @@
 
       console.debug('LOADED');
       console.debug(Object.values(media).map(v => v.join('\n')).join('\n'));
+
+      const slider = $('.slider');
+      slider.addEventListener('change', e => {
+        $('.seconds').innerHTML = e.target.value;
+        renderPics(pics, e.target.value);
+      });
 
       run(pics, songs);
     });
