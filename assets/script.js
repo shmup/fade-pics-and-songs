@@ -25,8 +25,7 @@
   };
 
   const renderAudioPlayer = songs => {
-    const player = new Audio(`songs/${songs[songIndex]}`);
-    player.controls = true;
+    const player = $('.player');
 
     player.addEventListener('ended',function(){
       songIndex = songIndex+1 > songs.length-1 ? 0 : songIndex+1;
@@ -43,8 +42,6 @@
       console.debug(songs);
       console.debug(songIndex);
     });
-
-    header.append(player);
   }
 
   const run = (pics, songs) => {

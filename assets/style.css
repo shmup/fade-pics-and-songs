@@ -6,15 +6,18 @@ html, body {
 
 .header {
   background: white;
+  font-weight: 900;
 }
 
 .header label {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .panel {
-  background: white;
+  background: #645a31;
   padding: 5px;
+  color: white;
 }
 
 .wrapper {
@@ -24,8 +27,33 @@ html, body {
   background-size: cover;
 }
 
+:root {
+  --color1: blue;
+  --color2: black;
+}
+
 h1 {
   margin: 0;
   padding: 20px;
 }
 
+.tooth {
+  background-color: var(--color1);
+  background-size:1em 1em, 1em 1em, 1em 1em, 1em 1em, 1em 1em;
+  background-position:0em 0em, .5em -.5em, -.5em .5em, .5em -.5em, 0 0, 0 0;
+  background-image:
+  linear-gradient(-45deg, var(--color1) 25%, transparent 25%, transparent 75%, transparent 75%, transparent), linear-gradient(-45deg, transparent 25%, transparent 25%, transparent 75%, var(--color1) 75%, var(--color1)), linear-gradient(-135deg,
+      var(--color2) 0%, var(--color2) 13%,
+      transparent 13%, transparent 27%,
+      var(--color2) 27%, var(--color2) 37%,
+      transparent 37%, transparent 100%
+    ),
+  linear-gradient(45deg,
+      var(--color2) 0%, var(--color2) 13%,
+      transparent 13%, transparent 27%,
+      var(--color2) 27%, var(--color2) 37%,
+      transparent 37%, transparent 100%
+    ),
+  linear-gradient(90deg, transparent 0%, transparent 50%, var(--color1) 50%, var(--color1) 100%),
+  linear-gradient(0deg, transparent 0%, transparent 50%, var(--color2) 50%, var(--color2) 100%);
+}
