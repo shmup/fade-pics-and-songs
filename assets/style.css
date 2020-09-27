@@ -23,6 +23,7 @@ html, body {
 }
 
 .footer {
+  font-size: 1vw;
   height: 15%;
   font-weight: 900;
   position:fixed;
@@ -48,10 +49,10 @@ html, body {
 }
 
 .content {
-  transition: background 1s linear;
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
+  transition: background 1s linear;
 }
 
 .wrapper {
