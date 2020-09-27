@@ -53,14 +53,18 @@
     renderAudioPlayer(songs);
   };
 
+  const get = async (pics, songs) => {
+    for (const thing of [].concat(...pics, ...songs)) {
+      await setTimeout(() => fetch(thing), 0);
+    }
+  }
+
   fetch('data.json')
     .then(resp => resp.json())
     .then(media => {
       const {pics, songs} = media;
 
-      for (const thing of [].concat(...pics, ...songs)) {
-        setTimeout(() => fetch(thing), 0);
-      }
+      get(pics, songs);
 
       console.debug('LOADED');
       console.debug(
