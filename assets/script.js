@@ -68,6 +68,11 @@
         renderPics(pics, e.target.value);
       });
 
+      $('.reset-pics').addEventListener('click', () => {
+        picIndex = 0;
+        renderPics(pics, slider.value);
+      });
+
       run(pics, songs);
     });
 })(document)
