@@ -26,10 +26,11 @@
 
   const renderAudioPlayer = songs => {
     const player = $('.player');
+    player.src = songs[0];
 
     player.addEventListener('ended',function(){
       songIndex = songIndex+1 > songs.length-1 ? 0 : songIndex+1;
-      player.src = `songs/${songs[songIndex]}`
+      player.src = songs[songIndex];
       player.pause();
       player.load();
       player.play();
@@ -53,6 +54,10 @@
     .then(resp => resp.json())
     .then(media => {
       const {pics, songs} = media;
+
+      for (const thing of [].concat(...pics, ...songs)) {
+        console.debug(thing);
+      }
 
       console.debug('LOADED');
       console.debug(Object.values(media).map(v => v.join('\n')).join('\n'));
