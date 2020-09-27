@@ -1,20 +1,20 @@
 ((document) => {
   const $ = x => document.querySelector(x);
 
-  const frame = $('.wrapper'), header = $('.header');
+  const content = $('.content'), header = $('.header');
 
   let picIndex = 0, songIndex = 0, cyclePicsId = null;
 
   const cyclePics = (pics, picIndex, speed) => {
     return setInterval(() => {
       picIndex = picIndex+1 > pics.length-1 ? 0 : picIndex+1;
-      frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
+      content.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
       document.title = pics[picIndex];
     }, speed * 1000);
   }
 
   const renderPics = (pics, speed) => {
-    frame.style.backgroundImage = `url('pics/${pics[picIndex]}')`
+    content.style.backgroundImage = `url('pics/${pics[picIndex]}')`
     document.title = pics[picIndex];
 
     if (cyclePicsId) {

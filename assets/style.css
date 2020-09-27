@@ -2,11 +2,33 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background: black;
 }
 
-.header {
-  background: white;
+.flex {
+  display: flex;
+}
+
+.pic-controls {
+  margin-bottom: 5px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  height: 85%;
+}
+
+.footer {
+  height: 15%;
   font-weight: 900;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width: 100%;
 }
 
 .header label {
@@ -14,22 +36,25 @@ html, body {
   margin-bottom: 10px;
 }
 
+
 .panel {
-  background: #645a31;
   padding: 5px;
   color: white;
 }
 
-.wrapper {
-  transition: background 1s linear;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+.panel a {
+  color: yellow;
 }
 
-:root {
-  --color1: blue;
-  --color2: black;
+.content {
+  transition: background 1s linear;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+}
+
+.wrapper {
 }
 
 h1 {
@@ -38,6 +63,8 @@ h1 {
 }
 
 .tooth {
+  --color1: blue;
+  --color2: black;
   background-color: var(--color1);
   background-size:1em 1em, 1em 1em, 1em 1em, 1em 1em, 1em 1em;
   background-position:0em 0em, .5em -.5em, -.5em .5em, .5em -.5em, 0 0, 0 0;

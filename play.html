@@ -8,26 +8,23 @@
     <link rel="icon" href="favicon.ico">
   </head>
   <body>
-  <div class="wrapper">
-    <div class="header">
-      <div class="panel tooth">
-        <h1>Memories...</h1>
-        <label>
-          <input class="slider" type="range" value="15" id="ms" name="wait" min="3" max="60">&nbsp;
-          <span class="seconds">15</span>&nbsp;second photo loop&nbsp;
-        </label>
-        <div>
-          <audio controls class="player" />
+    <div class="wrapper">
+      <div class="content">
+      </div>
+      <div class="footer tooth">
+        <div class="panel">
+          <h1>Memories...</h1>
+          <label class="flex pic-controls">
+            <input class="slider" type="range" value="15" id="ms" name="wait" min="3" max="60">&nbsp;
+            <span class="seconds">15</span>&nbsp;second photo loop&nbsp;
+            <a href="#">[Reset]</a>
+          </label>
+          <div>
+            <audio controls class="player" />
+          </div>
         </div>
       </div>
     </div>
-    <div class="content">
-      <div class="pictures">
-      </div>
-    </div>
-    <div class="footer">
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
