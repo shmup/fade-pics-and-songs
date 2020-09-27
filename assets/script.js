@@ -1,20 +1,23 @@
-((document) => {
+(document => {
   const $ = x => document.querySelector(x);
 
-  const content = $('.content'), header = $('.header');
+  const content = $('.content'),
+    header = $('.header');
 
-  let picIndex = 0, songIndex = 0, cyclePicsId = null;
+  let picIndex = 0,
+    songIndex = 0,
+    cyclePicsId = null;
 
   const cyclePics = (pics, picIndex, speed) => {
     return setInterval(() => {
-      picIndex = picIndex+1 > pics.length-1 ? 0 : picIndex+1;
+      picIndex = picIndex + 1 > pics.length - 1 ? 0 : picIndex + 1;
       content.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
       document.title = pics[picIndex];
     }, speed * 1000);
-  }
+  };
 
   const renderPics = (pics, speed) => {
-    content.style.backgroundImage = `url('pics/${pics[picIndex]}')`
+    content.style.backgroundImage = `url('pics/${pics[picIndex]}')`;
     document.title = pics[picIndex];
 
     if (cyclePicsId) {
@@ -28,8 +31,8 @@
     const player = $('.player');
     player.src = songs[0];
 
-    player.addEventListener('ended',function(){
-      songIndex = songIndex+1 > songs.length-1 ? 0 : songIndex+1;
+    player.addEventListener('ended', function() {
+      songIndex = songIndex + 1 > songs.length - 1 ? 0 : songIndex + 1;
       player.src = songs[songIndex];
       player.pause();
       player.load();
@@ -43,12 +46,12 @@
       console.debug(songs);
       console.debug(songIndex);
     });
-  }
+  };
 
   const run = (pics, songs) => {
     renderPics(pics, 15);
     renderAudioPlayer(songs);
-  }
+  };
 
   fetch('data.json')
     .then(resp => resp.json())
@@ -60,7 +63,11 @@
       }
 
       console.debug('LOADED');
-      console.debug(Object.values(media).map(v => v.join('\n')).join('\n'));
+      console.debug(
+        Object.values(media)
+          .map(v => v.join('\n'))
+          .join('\n')
+      );
 
       const slider = $('.slider');
       slider.addEventListener('change', e => {
@@ -75,4 +82,4 @@
 
       run(pics, songs);
     });
-})(document)
+})(document);
