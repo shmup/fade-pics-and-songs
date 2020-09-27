@@ -71,8 +71,11 @@
 
       const slider = $('.slider');
       slider.addEventListener('change', e => {
-        $('.seconds').innerHTML = e.target.value;
         renderPics(pics, e.target.value);
+      });
+
+      slider.addEventListener('input', e => {
+        $('.seconds').innerHTML = e.target.value;
       });
 
       $('.reset-pics').addEventListener('click', () => {

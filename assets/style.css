@@ -19,17 +19,18 @@ html, body {
 }
 
 .content {
-  height: 85%;
+  height: 90%;
 }
 
 .footer {
-  font-size: 1vw;
-  height: 15%;
+  height: 10%;
   font-weight: 900;
   position:fixed;
   bottom:0;
   left:0;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .header label {
